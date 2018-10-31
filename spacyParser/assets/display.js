@@ -1,4 +1,10 @@
-let text_sec = document.getElementById("text")
+let text_sec = document.getElementById("text");
+let count = document.getElementById("count");
+let tag_count = [0, 0, 0, 0, 0];
+
+function sum(arr) {
+    return eval(arr.join("+"));
+};
 
 word_seq = text;
 text_sec.addEventListener('mouseout', function(e){
@@ -12,6 +18,7 @@ for (let word in word_seq){
     if (tag[word] !== 0){
         sep_word.className += ' tag_'+ tag[word]
     }
+    tag_count[tag[word]] += 1;
     sep_word.innerHTML = word_seq[word];
     sep_word.addEventListener('mouseover', function(e){
         draw_info(Number(e.target.id.split('_')[1])+1);
@@ -19,11 +26,13 @@ for (let word in word_seq){
     text_sec.appendChild(sep_word);
 }
 
-let right = document.getElementById("right")
+count.innerHTML = tag_count.join(" ") + " " + sum(tag_count);
+
+let hover = document.getElementById("hover")
 
 function draw_info(index){
 
-    right.innerHTML = "";
+    hover.innerHTML = "";
 
     let source;
     if (index === 0) { source = empty; } else { source = info[index-1] }
@@ -31,7 +40,7 @@ function draw_info(index){
         let section = document.createElement('div');
         section.className = "section";
         section.innerHTML = obj2html(group);
-        right.appendChild(section);
+        hover.appendChild(section);
     }
     
     function add_color(content, key){

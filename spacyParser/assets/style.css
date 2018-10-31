@@ -2,17 +2,16 @@
 
 * {
     margin: 0;
+    color: #fff;
+    font-family: 'Montserrat';
+}
+
+body {
+    background-color: rgb(30, 30, 30);
 }
 
 .container {
     padding: 50px;
     margin: 0;
     position: absolute;
-    background-color: rgb(30, 30, 30);
-    color: #fff;
-    font-family: 'Montserrat';
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
 }

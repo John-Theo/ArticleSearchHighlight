@@ -10,17 +10,24 @@
   <link rel="stylesheet" href='{% static "./style.css" %}'>
   <title>Document</title>
 </head>
+
 <body>
+  <div id="right">
+    <div id="hover"></div>
+    <div class="stat" id="count">0/0</div>
+    <div class="stat" id="count_label">0 1 2 3 4</div>
+  </div>
   <div class="container">
-      <div class="frame">
-        <div class="panel" id="left">
-          <div id="text"></div>
-          <div id="count">0/0</div>
-        </div>
-        <div class="panel" id="right"></div>
+    <div class="frame">
+      <div class="panel" id="left">
+        <div id="text"></div>
       </div>
+      <div class="panel" id="right_placeholder">
+      </div>
+    </div>
   </div>
 </body>
+
 <script src='{% static "./json/null.js" %}'></script>
 <script src='{% static json_file %}'></script>
 <script src='{% static "./display.js" %}'></script>
