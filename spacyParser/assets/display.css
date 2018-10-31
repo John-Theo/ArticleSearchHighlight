@@ -95,12 +95,19 @@
 }
 
 #count {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
     margin-top: 50px;
     line-height: 20px;
+    
+}
+.tag_count{
     font-weight: 600;
 }
 
-#count_label {
+.tag_label {
     margin: 5px;
     font-size: 12px;
     color: #00d600;

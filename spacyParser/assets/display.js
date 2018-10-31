@@ -1,6 +1,7 @@
 let text_sec = document.getElementById("text");
 let count = document.getElementById("count");
 let tag_count = [0, 0, 0, 0, 0];
+let tag_label = ['normal', 'stop', 'special', 'url', 'common'];
 
 function sum(arr) {
     return eval(arr.join("+"));
@@ -26,7 +27,22 @@ for (let word in word_seq){
     text_sec.appendChild(sep_word);
 }
 
-count.innerHTML = tag_count.join(" ") + " " + sum(tag_count);
+// tag_count[5] = sum(tag_count);
+for (let label in tag_label){
+    let tag_sec = document.createElement('div');
+    
+    let count_div = document.createElement('div');
+    count_div.className = "tag_count";
+    count_div.innerHTML = tag_count[label];
+    tag_sec.appendChild(count_div);
+
+    let label_div = document.createElement('div');
+    label_div.className = "tag_label";
+    label_div.innerHTML = tag_label[label];
+    tag_sec.appendChild(label_div);
+
+    count.appendChild(tag_sec);
+}
 
 let hover = document.getElementById("hover")
 
