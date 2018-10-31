@@ -1,0 +1,33 @@
+.upload{
+    height: 100%;
+    position: relative;
+}
+
+#file {
+    font-size: 20px;
+    width: 200px;
+    height: 80px;
+    letter-spacing: 5px;
+    line-height: 80px;
+    text-align: center;
+    position:absolute;
+    top:0;left:0;right:0;bottom:0;
+	margin:auto;
+    cursor: pointer;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+    display: inline-block;
+    text-decoration: none;
+}
+
+#file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
