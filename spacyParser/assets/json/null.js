@@ -1,1 +1,0 @@
-empty=[{"i": null, "idx": null}, {"lemma_": null}, {"shape_": null}, {"tag_": null, "pos_": null}, {"like_email": null, "like_num": null, "like_url": null}, {"is_alpha": null, "is_digit": null, "is_punct": null, "is_stop": null, "is_upper": null}]
