@@ -3,16 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="22012c71-1239-4d31-b015-b604ea3bb238" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/write_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/write_json.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spacyParser/assets/display.css" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/assets/display.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spacyParser/assets/display.js" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/assets/display.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spacyParser/assets/json/9e058162bef0732a63830e29da86ca8d.js" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/assets/json/9e058162bef0732a63830e29da86ca8d.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spacyParser/assets/load_file.js" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/assets/load_file.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spacyParser/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spacyParser/templates/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/templates/app.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spacyParser/tests.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/spacyParser/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,23 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="write_json.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/write_json.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
-              <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="find_mesh.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/find_mesh.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="623">
-              <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+            <state relative-caret-position="523">
+              <caret line="100" column="33" selection-start-line="100" selection-start-column="33" selection-end-line="100" selection-end-column="33" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -84,7 +66,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="283" />
     <option name="y" value="19" />
     <option name="width" value="1245" />
@@ -234,7 +216,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13314785" />
       <window_info anchor="bottom" id="TODO" order="8" />
@@ -501,10 +483,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/spacyParser/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/find_mesh.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+        <state relative-caret-position="523">
+          <caret line="100" column="33" selection-start-line="100" selection-start-column="33" selection-end-line="100" selection-end-column="33" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

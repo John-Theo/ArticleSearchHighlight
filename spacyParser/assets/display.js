@@ -1,5 +1,7 @@
 let text_sec = document.getElementById("text");
 let count = document.getElementById("count");
+let info_pannel = document.getElementById("info");
+let info_list = [];
 let tag_count = [0, 0, 0, 0, 0, 0];
 let tag_label = ['normal', 'stop', 'special', 'url', 'common', 'weird'];
 
@@ -7,13 +9,19 @@ function sum(arr) {
     return eval(arr.join("+"));
 };
 
-word_seq = text;
 text_sec.addEventListener('mouseout', function(e){
-    draw_info(0);
+    drawInfo(0);
 });
 
-if (typeof(tag) != "undefined") {
-    for (let word in word_seq){
+function drawText(content){
+    let text_list = content["text"];
+    let tag = content["tag"];
+    info_list = content["info"];
+    tag_count = [0, 0, 0, 0, 0, 0];
+    text_sec.innerHTML = "";
+    scrollTo(0,0);
+
+    for (let word in text_list){
         let sep_word = document.createElement('div');
         sep_word.id = 'w_'+word;
         sep_word.className = "sep_word";
@@ -21,41 +29,22 @@ if (typeof(tag) != "undefined") {
             sep_word.className += ' tag_'+ tag[word]
         }
         tag_count[tag[word]] += 1;
-        sep_word.innerHTML = word_seq[word];
+        sep_word.innerHTML = text_list[word];
         sep_word.addEventListener('mouseover', function(e){
             console.log(e.target.id);
-            draw_info(Number(e.target.id.split('_')[1])+1);
+            drawInfo(Number(e.target.id.split('_')[1])+1);
         });
         text_sec.appendChild(sep_word);
     }
+
+    drawStat();
 }
 
-// tag_count[5] = sum(tag_count);
-for (let label in tag_label){
-    let tag_sec = document.createElement('div');
-    tag_sec.className = "tag_sec";
-    
-    let count_div = document.createElement('div');
-    count_div.className = "tag_count";
-    count_div.innerHTML = tag_count[label];
-    tag_sec.appendChild(count_div);
-
-    let label_div = document.createElement('div');
-    label_div.className = "tag_label";
-    label_div.innerHTML = tag_label[label];
-    tag_sec.appendChild(label_div);
-
-    count.appendChild(tag_sec);
-}
-
-let info_pannel = document.getElementById("info")
-
-function draw_info(index){
-
+function drawInfo(index){
     info_pannel.innerHTML = "";
 
     let source;
-    if (index === 0) { source = empty; } else { source = info[index-1] }
+    if (index === 0) { source = empty; } else { source = info_list[index-1] }
     for (let group of source){
         let section = document.createElement('div');
         section.className = "section";
@@ -82,6 +71,29 @@ function draw_info(index){
     }
 }
 
+function drawStat(){
+    count.innerHTML = "";
+
+    // tag_count[5] = sum(tag_count);
+    for (let label in tag_label){
+        let tag_sec = document.createElement('div');
+        tag_sec.className = "tag_sec";
+        
+        let count_div = document.createElement('div');
+        count_div.className = "tag_count";
+        count_div.innerHTML = tag_count[label];
+        tag_sec.appendChild(count_div);
+
+        let label_div = document.createElement('div');
+        label_div.className = "tag_label";
+        label_div.innerHTML = tag_label[label];
+        tag_sec.appendChild(label_div);
+
+        count.appendChild(tag_sec);
+    }
+}
+
 window.onload=function(){
-    draw_info(0);
+    drawText({});
+    drawInfo(0);
 }

@@ -66,7 +66,7 @@ def is_noise(_token):
     x = special(_token)
     if x:
         _special = True
-        print(_token.text)
+        # print(_token.text)
     elif any((_token.is_digit, _token.like_num, _token.lemma_ in STOP_WORDS, _token.is_punct, _token.is_space)) or \
             (_token.lemma_ in BAD_WORDS) or (len(_token.lemma_) == 1):
         _stop = True

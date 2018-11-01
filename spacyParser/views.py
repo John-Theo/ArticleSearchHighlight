@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
+from django.http import JsonResponse
+from .write_json import parse
 
 
 def index(request):
@@ -12,22 +14,27 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-def parse(request):
-    print(request)
+# def parse(request):
+#     print(request)
 
 
 def app(request):
-    _id = request.GET.get('id', None)
-    template = loader.get_template('app.html')
-    if _id:
-        filename = './json/'+_id+'.js'
-        context = {
-            'json_file': filename,
-            'id': _id
-        }
-    else:
-        context = {
-            'json_file': False,
-            'id': '等待上传'
-        }
-    return HttpResponse(template.render(context, request))
+    if request.method == 'GET':
+        _id = request.GET.get('id', None)
+        template = loader.get_template('app.html')
+        if _id:
+            filename = './json/'+_id+'.js'
+            context = {
+                'json_file': filename,
+                'id': _id
+            }
+        else:
+            context = {
+                'json_file': False,
+                'id': '等待上传'
+            }
+        return HttpResponse(template.render(context, request))
+    elif request.method == 'POST':
+        content = request.POST["content"]
+        return JsonResponse(parse(content))
+    
