@@ -2,12 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22012c71-1239-4d31-b015-b604ea3bb238" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/write_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/write_json.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/hub/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/find_mesh.py" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/find_mesh.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/stat/common_words.txt" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/assets/stat/common_words.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/stat/mesh.json" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/assets/stat/mesh.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/write_json.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/enr_tag/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/enr_tag/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/hub/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enr_tag/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/hub/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enr_tag/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/hub/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enr_tag/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/hub/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spacyParser/assets/display.js" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/assets/display.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spacyParser/assets/json/4bfa7d01bb8d751c8d69dddc180e718d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spacyParser/assets/json/7e6a656809b9bc45af61997f4d055eb7.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spacyParser/assets/json/9e058162bef0732a63830e29da86ca8d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spacyParser/assets/json/null.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/spacyParser/assets/load_file.js" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/assets/load_file.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spacyParser/templates/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/templates/app.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spacyParser/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spacyParser/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spacyParser/write_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/write_json.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,23 +41,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="find_mesh.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/api/find_mesh.py">
+      <file leaf-file-name="find_mesh.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spacyParser/find_mesh.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="523">
               <caret line="100" column="33" selection-start-line="100" selection-start-column="33" selection-end-line="100" selection-end-column="33" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hub/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spacyParser/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manage.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/manage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="5" column="55" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
+              <folding>
+                <element signature="e#22#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hub/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -63,6 +119,10 @@
         <option value="$PROJECT_DIR$/api/find_mesh.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/api/write_json.py" />
+        <option value="$PROJECT_DIR$/enr_tag/urls.py" />
+        <option value="$PROJECT_DIR$/spacyParser/urls.py" />
+        <option value="$PROJECT_DIR$/spacyParser/write_json.py" />
+        <option value="$PROJECT_DIR$/hub/settings.py" />
       </list>
     </option>
   </component>
@@ -89,30 +149,23 @@
             <path>
               <item name="backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="hub" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
               <item name="spacyParser" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="spacyParser" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="spacyParser" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
     </panes>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Work\MingChen\Dato\src\visualization\spacy_tags\backend\spacyParser" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -126,7 +179,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.write_json">
+  <component name="RunManager" selected="Python.write_json (1)">
     <configuration name="find_mesh" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="backend" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -139,7 +192,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/api/find_mesh.py" />
+      <option name="SCRIPT_NAME" value="F:\Work\MingChen\Dato\src\visualization\spacy_tags\backend\spacyParser\find_mesh.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -158,6 +211,24 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/api/tmp.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="write_json (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="backend" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/spacyParser" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/spacyParser/write_json.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -185,9 +256,11 @@
       <item itemvalue="Python.tmp" />
       <item itemvalue="Python.write_json" />
       <item itemvalue="Python.find_mesh" />
+      <item itemvalue="Python.write_json (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.write_json (1)" />
         <item itemvalue="Python.write_json" />
         <item itemvalue="Python.find_mesh" />
         <item itemvalue="Python.tmp" />
@@ -217,15 +290,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13314785" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13314785" />
       <window_info anchor="bottom" id="TODO" order="8" />
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="4" weight="0.3293348" />
       <window_info anchor="bottom" id="Version Control" order="1" />
       <window_info anchor="bottom" id="Python Console" order="2" weight="0.32824427" />
       <window_info anchor="right" id="Run" order="3" visible="true" weight="0.41295707" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.22246456" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.22246456" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.39978212" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -234,7 +309,6 @@
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="4" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -257,7 +331,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/find_mesh.py">
+    <entry file="file://$PROJECT_DIR$/spacyParser/find_mesh.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="920">
           <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
@@ -284,7 +358,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/find_mesh.py">
+    <entry file="file://$PROJECT_DIR$/spacyParser/find_mesh.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="920">
           <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
@@ -311,7 +385,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/find_mesh.py">
+    <entry file="file://$PROJECT_DIR$/spacyParser/find_mesh.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
           <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
@@ -338,7 +412,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/find_mesh.py">
+    <entry file="file://$PROJECT_DIR$/spacyParser/find_mesh.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="920">
           <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
@@ -365,7 +439,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/find_mesh.py">
+    <entry file="file://$PROJECT_DIR$/spacyParser/find_mesh.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="920">
           <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
@@ -392,7 +466,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/find_mesh.py">
+    <entry file="file://$PROJECT_DIR$/spacyParser/find_mesh.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="920">
           <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
@@ -429,7 +503,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/find_mesh.py">
+    <entry file="file://$PROJECT_DIR$/spacyParser/find_mesh.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="740">
           <caret line="39" column="37" lean-forward="true" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
@@ -483,21 +557,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/spacyParser/find_mesh.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="100" column="33" selection-start-line="100" selection-start-column="33" selection-end-line="100" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hub/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spacyParser/write_json.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/spacyParser/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="40">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/find_mesh.py">
+    <entry file="file://$PROJECT_DIR$/hub/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="100" column="33" selection-start-line="100" selection-start-column="33" selection-end-line="100" selection-end-column="33" />
+        <state relative-caret-position="60">
+          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="55" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#22#31#0" expanded="true" />
           </folding>
         </state>
       </provider>

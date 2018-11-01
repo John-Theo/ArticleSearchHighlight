@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href='{% static "./display.css" %}'>
   <link rel="stylesheet" href='{% static "./style.css" %}'>
-  <title>APP | {{ id }}</title>
+  <title>APP</title>
 </head>
 
 <body>
@@ -32,10 +32,6 @@
 </body>
 
 <script src='{% static "./load_file.js" %}'></script>
-<script src='{% static "./json/null.js" %}'></script>
-{% if json_file %}
-<script src='{% static json_file %}'></script>
-{% endif %}
 <script src='{% static "./display.js" %}'></script>
 
 </html>

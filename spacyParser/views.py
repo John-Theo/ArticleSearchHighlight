@@ -20,20 +20,20 @@ def index(request):
 
 def app(request):
     if request.method == 'GET':
-        _id = request.GET.get('id', None)
+        # _id = request.GET.get('id', None)
         template = loader.get_template('app.html')
-        if _id:
-            filename = './json/'+_id+'.js'
-            context = {
-                'json_file': filename,
-                'id': _id
-            }
-        else:
-            context = {
-                'json_file': False,
-                'id': '等待上传'
-            }
-        return HttpResponse(template.render(context, request))
+        # if _id:
+        #     filename = './json/'+_id+'.js'
+        #     context = {
+        #         'json_file': filename,
+        #         'id': _id
+        #     }
+        # else:
+        #     context = {
+        #         'json_file': False,
+        #         'id': '等待上传'
+        #     }
+        return HttpResponse(template.render(None, request))
     elif request.method == 'POST':
         content = request.POST["content"]
         return JsonResponse(parse(content))

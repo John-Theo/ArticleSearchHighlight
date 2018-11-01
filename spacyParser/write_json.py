@@ -43,10 +43,10 @@ SOI = ['^X{2,}[xXd-]+$', '^[xX](?:[^\(\)\.;\:]*?d|d[^\(\)\.;\:]*?[xX])[^\(\)\.;\
 BSOI = []  # ['.*?\-x+$']
 
 if __name__ == '__main__':
-    with open('stat/common_words.txt') as common_words_input:
+    with open('assets/stat/common_words.txt') as common_words_input:
         COMMON_WORDS = set(common_words_input.read().split('\n'))
 else:
-    with open('api/stat/common_words.txt') as common_words_input:
+    with open('spacyParser/assets/stat/common_words.txt') as common_words_input:
         COMMON_WORDS = set(common_words_input.read().split('\n'))
 
 BAD_WORDS = ['±', 'P', '=', 'i.e.', '>', '<', '-PRON-', 'URL', 'rho']

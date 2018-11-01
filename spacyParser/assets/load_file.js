@@ -6,7 +6,7 @@ function read(){
         reader.readAsText(uploadFile, "UTF-8");
         reader.onload = function (evt) {
             var fileString = evt.target.result;
-            post('../spacy_parser/app', {'content': fileString});
+            post('../spacy_parser/', {'content': fileString});
         }
     }
 }
