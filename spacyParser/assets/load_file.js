@@ -11,22 +11,6 @@ function read(){
     }
 }
 
-// function post(URL, PARAMS) {
-//     var temp = document.createElement("form");
-//     temp.action = URL;
-//     temp.method = "post";
-//     temp.style.display = "none";
-
-//     for (let attr in PARAMS) {
-//         let opt = document.createElement("textarea");
-//         opt.name = attr;
-//         opt.value = PARAMS[attr];
-//         temp.appendChild(opt);
-//     }
-//     document.body.appendChild(temp);
-//     temp.submit();
-// }
-
 function post(URL, PARAMS) {
     let formData = new FormData(); 
     for (let attr in PARAMS) {
@@ -47,7 +31,6 @@ function ajax(method, url, data){
             if (request.status === 200) {
                 // 成功，通过responseText拿到响应的文本:
                 return drawText(JSON.parse(request.responseText));
-                // return success(request.responseText);
             } else {
                 // 失败，根据响应码判断失败原因:
                 return fail(request.status);

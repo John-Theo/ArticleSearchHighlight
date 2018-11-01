@@ -2,35 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22012c71-1239-4d31-b015-b604ea3bb238" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/hub/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/find_mesh.py" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/find_mesh.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/stat/common_words.txt" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/assets/stat/common_words.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/stat/mesh.json" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/assets/stat/mesh.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/write_json.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/enr_tag/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/enr_tag/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/hub/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/enr_tag/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/hub/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/enr_tag/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/hub/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/enr_tag/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/hub/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spacyParser/assets/display.js" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/assets/display.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spacyParser/assets/json/4bfa7d01bb8d751c8d69dddc180e718d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spacyParser/assets/json/7e6a656809b9bc45af61997f4d055eb7.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spacyParser/assets/json/9e058162bef0732a63830e29da86ca8d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spacyParser/assets/json/null.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spacyParser/assets/load_file.js" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/assets/load_file.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spacyParser/templates/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/templates/app.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spacyParser/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spacyParser/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spacyParser/write_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/spacyParser/write_json.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -107,6 +80,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>p53</find>
+      <find>ner_tag</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -126,7 +100,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="283" />
     <option name="y" value="19" />
     <option name="width" value="1245" />
@@ -289,10 +263,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="2576" height="1056" extended-state="7" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13314785" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13314785" />
       <window_info anchor="bottom" id="TODO" order="8" />
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.3293348" />
@@ -300,7 +273,7 @@
       <window_info anchor="bottom" id="Python Console" order="2" weight="0.32824427" />
       <window_info anchor="right" id="Run" order="3" visible="true" weight="0.41295707" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.22246456" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.22246456" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.39978212" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
