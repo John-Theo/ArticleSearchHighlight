@@ -1,7 +1,7 @@
 let text_sec = document.getElementById("text");
 let count = document.getElementById("count");
-let tag_count = [0, 0, 0, 0, 0];
-let tag_label = ['normal', 'stop', 'special', 'url', 'common'];
+let tag_count = [0, 0, 0, 0, 0, 0];
+let tag_label = ['normal', 'stop', 'special', 'url', 'common', 'weird'];
 
 function sum(arr) {
     return eval(arr.join("+"));
@@ -12,24 +12,28 @@ text_sec.addEventListener('mouseout', function(e){
     draw_info(0);
 });
 
-for (let word in word_seq){
-    let sep_word = document.createElement('div');
-    sep_word.id = 'w_'+word;
-    sep_word.className = "sep_word";
-    if (tag[word] !== 0){
-        sep_word.className += ' tag_'+ tag[word]
+if (typeof(tag) != "undefined") {
+    for (let word in word_seq){
+        let sep_word = document.createElement('div');
+        sep_word.id = 'w_'+word;
+        sep_word.className = "sep_word";
+        if (tag[word] !== 0){
+            sep_word.className += ' tag_'+ tag[word]
+        }
+        tag_count[tag[word]] += 1;
+        sep_word.innerHTML = word_seq[word];
+        sep_word.addEventListener('mouseover', function(e){
+            console.log(e.target.id);
+            draw_info(Number(e.target.id.split('_')[1])+1);
+        });
+        text_sec.appendChild(sep_word);
     }
-    tag_count[tag[word]] += 1;
-    sep_word.innerHTML = word_seq[word];
-    sep_word.addEventListener('mouseover', function(e){
-        draw_info(Number(e.target.id.split('_')[1])+1);
-    });
-    text_sec.appendChild(sep_word);
 }
 
 // tag_count[5] = sum(tag_count);
 for (let label in tag_label){
     let tag_sec = document.createElement('div');
+    tag_sec.className = "tag_sec";
     
     let count_div = document.createElement('div');
     count_div.className = "tag_count";
@@ -44,11 +48,11 @@ for (let label in tag_label){
     count.appendChild(tag_sec);
 }
 
-let hover = document.getElementById("hover")
+let info_pannel = document.getElementById("info")
 
 function draw_info(index){
 
-    hover.innerHTML = "";
+    info_pannel.innerHTML = "";
 
     let source;
     if (index === 0) { source = empty; } else { source = info[index-1] }
@@ -56,7 +60,7 @@ function draw_info(index){
         let section = document.createElement('div');
         section.className = "section";
         section.innerHTML = obj2html(group);
-        hover.appendChild(section);
+        info_pannel.appendChild(section);
     }
     
     function add_color(content, key){

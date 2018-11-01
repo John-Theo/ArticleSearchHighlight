@@ -17,16 +17,53 @@
     /* background-color: #fff; */
 }
 
-.tag {
-    position: relative;
-    height: 40px;
+.tag_sec {
+    padding: 10px 5px 0 5px;
+    /* border-radius: 7px;
+    background-color: rgba(255, 255, 255, 0.05); */
 }
 
-/* IS_STOP, WEIRD, MAYBE_URL, IS_COMMON */
-.tag_1 { color: #444; }
-.tag_2 { color: rgb(255, 234, 0); }
-.tag_3 { color: rgb(0, 247, 0); }
-.tag_4 { color: rgb(10, 63, 0); }
+#count {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    margin-top: 30px;
+    line-height: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.tag_count {
+    font-weight: 600;
+}
+
+.tag_label {
+    margin: 5px;
+    font-size: 12px;
+    color: #00d600;
+}
+
+/* IS_STOP, WEIRD, MAYBE_URL, IS_COMMON, IS_WEIRD */
+.tag_1 {
+    color: #444;
+}
+
+.tag_2 {
+    color: rgb(255, 234, 0);
+}
+
+.tag_3 {
+    color: rgb(0, 247, 0);
+}
+
+.tag_4 {
+    color: rgb(14, 85, 0);
+}
+
+.tag_5 {
+    color: rgb(231, 73, 0);
+}
 
 #left {
     padding: 10px 40px 0px 10px;
@@ -77,7 +114,7 @@
     top: 50px;
 }
 
-#hover {
+#info {
     padding: 40px 0;
     display: flex;
     flex-direction: column;
@@ -89,28 +126,31 @@
     color: rgba(255, 255, 255, 0.8);
 }
 
-.stat {
-    width: 100%;
-    text-align: center;
+#fileUpload {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
 
-#count {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: stretch;
-    margin-top: 50px;
-    line-height: 20px;
-    
-}
-.tag_count{
-    font-weight: 600;
-}
-
-.tag_label {
-    margin: 5px;
-    font-size: 12px;
-    color: #00d600;
+#fileUpload+label {
+    margin-top: 30px;
+    border-radius: 7px;
+    background-color: rgba(255, 255, 255, 0.05);
+    width: 350px;
+    font-weight: 700;
+    text-align:center;
+    word-spacing: 7px;
+    letter-spacing: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 20px 0px;
+    text-transform: uppercase;
 }
 
 .line {

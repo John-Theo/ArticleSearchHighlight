@@ -1,5 +1,5 @@
 function read(){
-    file = document.getElementById('button');
+    file = document.getElementById('fileUpload');
     if (file.files.length != 0){
         let uploadFile = file.files[0]
         let reader = new FileReader();

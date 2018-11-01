@@ -38,6 +38,10 @@ presents = [
     'is_stop', 'is_upper'
 ]
 
+# Shape of interest
+SOI = ['^X{2,}[xXd-]+$', '^[xX](?:[^\(\)\.;\:]*?d|d[^\(\)\.;\:]*?[xX])[^\(\)\.;\:]*$']
+BSOI = []  # ['.*?\-x+$']
+
 if __name__ == '__main__':
     with open('stat/common_words.txt') as common_words_input:
         COMMON_WORDS = set(common_words_input.read().split('\n'))
@@ -49,23 +53,35 @@ BAD_WORDS = ['±', 'P', '=', 'i.e.', '>', '<', '-PRON-', 'URL', 'rho']
 
 
 def is_noise(_token):
-    GOOD, IS_STOP, WEIRD, MAYBE_URL, IS_COMMON = True, False, False, False, False
-    if any((_token.is_digit, _token.like_num, _token.lemma_ in STOP_WORDS, _token.is_punct, _token.is_space)) or \
+    def special(word):
+        for rule in SOI:
+            if re.match(rule, word.shape_):
+                for b_rule in BSOI:
+                    if re.match(b_rule, word.shape_):
+                        return False
+                return word
+        return False
+
+    _normal, _stop, _special, _url, _common, _weird = True, False, False, False, False, False
+    x = special(_token)
+    if x:
+        _special = True
+        print(_token.text)
+    elif any((_token.is_digit, _token.like_num, _token.lemma_ in STOP_WORDS, _token.is_punct, _token.is_space)) or \
             (_token.lemma_ in BAD_WORDS) or (len(_token.lemma_) == 1):
-        IS_STOP = True
+        _stop = True
     elif '.' in _token.lemma_:
         if _token.like_url:
-            MAYBE_URL = True
+            _url = True
         else:
-            WEIRD = True
+            _weird = True
     elif (not _token.is_alpha) or _token.is_upper:
-        WEIRD = True
+        _weird = True
     elif _token.lemma_ in COMMON_WORDS:
-        IS_COMMON = True
-    if any((IS_STOP, WEIRD, MAYBE_URL, IS_COMMON)):
-        GOOD = False
-    # print('%30s  %5s %5s %5s %5s %5s' % (_token.lemma_, GOOD, IS_STOP, WEIRD, MAYBE_URL, IS_COMMON))
-    return GOOD, IS_STOP, WEIRD, MAYBE_URL, IS_COMMON
+        _common = True
+    if any((_stop, _special, _url, _common, _weird)):
+        _normal = False
+    return _normal, _stop, _special, _url, _common, _weird
 
 
 def parse(content):
@@ -91,7 +107,7 @@ def parse(content):
                 group = {}
         attr_list.append(group)
         attr_whole.append(attr_list)
-        print(word)
+
     info = json.dumps(attr_whole)
     tags = json.dumps(tags)
     if __name__ != '__main__':
@@ -103,29 +119,9 @@ def parse(content):
 
 
 if __name__ == '__main__':
-    txt = 'The best suture method to prevent incisional surgical-site infection (SSI) '\
-             'after clean-contaminated surgery has not been clarified.\r\n'\
-             'Patients undergoing elective colorectal cancer surgery at one of 16 centres '\
-             'were randomized to receive either subcuticular sutures or skin stapling for '\
-             'skin closure. The primary endpoint was the rate of incisional SSI. Secondary '\
-             'endpoints of interest included time required for wound closure, incidence of '\
-             'wound problems, postoperative length of stay, wound aesthetics and patient '\
-             'satisfaction.\r\n'\
-             'A total of 1264 patients were enrolled. The cumulative incidence of '\
-             'incisional SSI by day 30 after surgery was similar after subcuticular '\
-             'sutures and stapled closure (8·7 versus 9·8 per cent respectively; P\u2009'\
-             '=\u20090·576). Comparison of cumulative incidence curves revealed that SSI '\
-             'occurred later in the subcuticular suture group (P\u2009=\u20090·019) '\
-             '(hazard ratio 0·66, 95 per cent c.i. 0·45 to 0·97). Wound problems (P\u2009'\
-             '=\u20090·484), wound aesthetics (P\u2009=\u20090·182) and postoperative '\
-             'duration of hospital stay (P\u2009=\u20090·510) did not differ between the '\
-             'groups; subcuticular sutures took 5\u2009min longer than staples (P < '\
-             '0·001). Patients in the subcuticular suture group were significantly more '\
-             'satisfied with their wound (52·4 per cent versus 42·7 per cent in the staple '\
-             'group; P\u2009=\u20090·002).\r\n'\
-             'Compared with skin stapling, subcuticular sutures did not reduce the risk of '\
-             'incisional SSI after colorectal surgery.\r\n'\
-             'UMIN000004001 (http://www.umin.ac.jp/ctr).'
-
+    txt = 'Functional reactivation of p53 pathway, although arduous, can potentially provide a broad-based strategy for cancer therapy owing to frequent p53 inactivation in human cancer. Using a phosphoprotein-screening array, we found that Benzyl Isothiocynate, (BITC) increases p53 phosphorylation in breast cancer cells and reveal an important role of ERK and PRAS40/MDM2 in BITC-mediated p53 activation. We show that BITC rescues and activates p53-signaling network and inhibits growth of p53-mutant cells. Mechanistically, BITC induces p73 expression in p53-mutant cells, disrupts the interaction of p73 and mutant-p53, thereby releasing p73 from sequestration and allowing it to be transcriptionally active. Furthermore, BITC-induced p53 and p73 axes converge on tumor-suppressor LKB1 which is transcriptionally upregulated by p53 and p73 in p53-wild-type and p53-mutant cells respectively; and in a feed-forward mechanism, LKB1 tethers with p53 and p73 to get recruited to p53-responsive promoters. Analyses of BITC-treated xenografts using LKB1-null cells corroborate in vitro mechanistic findings and establish LKB1 as the key node whereby BITC potentiates as well as rescues p53-pathway in p53-wild-type as well as p53-mutant cells. These data provide first in vitro and in vivo evidence of the integral role of previously unrecognized crosstalk between BITC, p53/LKB1 and p73/LKB1 axes in breast tumor growth-inhibition.'
+    # with open(r'F:\Work\MingChen\Dato\Data\texts\25752762.txt', encoding='utf-8') as fp:
+    #     txt = fp.read()
+    print(txt)
     i, t = parse(txt)
-    print(t)
+    # print(t)

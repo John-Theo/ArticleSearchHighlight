@@ -8,13 +8,17 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href='{% static "./display.css" %}'>
   <link rel="stylesheet" href='{% static "./style.css" %}'>
-  <title>Document</title>
+  <title>APP | {{ id }}</title>
 </head>
 
 <body>
   <div id="right">
-    <div id="hover"></div>
-    <div class="stat" id="count"></div>
+    <div id="info"></div>
+    <div id="count"></div>
+    <div>
+      <input type="file" id="fileUpload" data-multiple-caption="{count} files selected" multiple style="display: none;" onchange="read()" />
+      <label for="fileUpload">Choose a file</label>
+    </div>
   </div>
   <div class="container">
     <div class="frame">
@@ -27,8 +31,11 @@
   </div>
 </body>
 
+<script src='{% static "./load_file.js" %}'></script>
 <script src='{% static "./json/null.js" %}'></script>
+{% if json_file %}
 <script src='{% static json_file %}'></script>
+{% endif %}
 <script src='{% static "./display.js" %}'></script>
 
 </html>

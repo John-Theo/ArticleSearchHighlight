@@ -17,10 +17,17 @@ def parse(request):
 
 
 def app(request):
-    _id = request.GET.get('id')
-    filename = './json/'+_id+'.js'
+    _id = request.GET.get('id', None)
     template = loader.get_template('app.html')
-    context = {
-        'json_file': filename,
-    }
+    if _id:
+        filename = './json/'+_id+'.js'
+        context = {
+            'json_file': filename,
+            'id': _id
+        }
+    else:
+        context = {
+            'json_file': False,
+            'id': '等待上传'
+        }
     return HttpResponse(template.render(context, request))
