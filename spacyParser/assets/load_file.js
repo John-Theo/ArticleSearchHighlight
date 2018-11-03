@@ -30,7 +30,7 @@ function ajax(method, url, data){
         if (request.readyState === 4) { // 成功完成
             if (request.status === 200) {
                 // 成功，通过responseText拿到响应的文本:
-                return drawText(JSON.parse(request.responseText));
+                return drawElements(JSON.parse(request.responseText));
             } else {
                 // 失败，根据响应码判断失败原因:
                 return fail(request.status);

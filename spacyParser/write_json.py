@@ -81,7 +81,7 @@ def is_noise(_token):
         _common = True
     if any((_stop, _special, _url, _common, _weird)):
         _normal = False
-    return _normal, _stop, _special, _url, _common, _weird
+    return _normal, _stop, _common, _url, _special, _weird
 
 
 def parse(content):
@@ -108,11 +108,15 @@ def parse(content):
         attr_whole.append(attr_list)
     
     if __name__ != '__main__':
-        return {'text': [str(x) for x in doc], 'info': attr_whole, 'tag': {'names': ['normal', 'stop', 'special', 'url', 'common', 'weird'], 'labels': tags}}
+        return {'text': [str(x) for x in doc], 'info': attr_whole, 'tag': {'names': TAG_LABELS, 'labels': tags, 'colors': TAG_COLORS}}
     else:
         info = json.dumps(attr_whole)
         tags = json.dumps(tags)
         return info, tags
+
+
+TAG_LABELS = ['normal', 'stop', 'common', 'url', 'special', 'weird']
+TAG_COLORS = ['white', '#444', 'rgb(14, 85, 0)', 'rgb(0, 247, 0)', 'rgb(255, 234, 0)', 'rgb(231, 73, 0)']
 
 
 if __name__ == '__main__':
