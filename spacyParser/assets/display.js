@@ -19,7 +19,7 @@ function add_tag_css(colorList){
     for (let color in colorList){
         colorStyle.innerHTML += ".tag_"+color+" {color:"+colorList[color]+"; background-color:"+colorList[color]+"}\n";
     }
-    console.log(colorStyle);
+    // console.log(colorStyle);
 }
 
 function drawElements(content){
