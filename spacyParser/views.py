@@ -36,5 +36,9 @@ def app(request):
         return HttpResponse(template.render(None, request))
     elif request.method == 'POST':
         content = request.POST["content"]
-        return JsonResponse(parse(content))
+        if content[0] != '{':
+            return JsonResponse(parse(content))
+        else:
+            import json
+            return JsonResponse(json.loads(content))
     

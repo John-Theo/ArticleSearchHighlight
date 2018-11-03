@@ -108,7 +108,7 @@ def parse(content):
         attr_whole.append(attr_list)
     
     if __name__ != '__main__':
-        return {'text': [str(x) for x in doc], 'info': attr_whole, 'tag': tags}
+        return {'text': [str(x) for x in doc], 'info': attr_whole, 'tag': {'names': ['normal', 'stop', 'special', 'url', 'common', 'weird'], 'labels': tags}}
     else:
         info = json.dumps(attr_whole)
         tags = json.dumps(tags)

@@ -21,5 +21,6 @@ urlpatterns = [
     path('', views.index),
     path('admin/', admin.site.urls),
     path('spacy_parser/', include('spacyParser.urls')),
+    path('genia/', include('GENiA.urls')),
     # path('api/', include('api.urls')),
 ]

@@ -1,56 +1,71 @@
-let text_sec = document.getElementById("text");
+let textSection = document.getElementById("text");
 let count = document.getElementById("count");
-let info_pannel = document.getElementById("info");
-let info_list = [];
-let tag_count = [0, 0, 0, 0, 0, 0];
-let tag_label = ['normal', 'stop', 'special', 'url', 'common', 'weird'];
-let empty=[{"i": null, "idx": null}, {"lemma_": null}, {"shape_": null}, {"tag_": null, "pos_": null}, {"like_email": null, "like_num": null, "like_url": null}, {"is_alpha": null, "is_digit": null, "is_punct": null, "is_stop": null, "is_upper": null}];
+let infoPannel = document.getElementById("info");
+let infoList = [];
+let tagCount = [0, 0, 0, 0, 0, 0];
+let defaultLabel = ['normal', 'stop', 'special', 'url', 'common', 'weird'];
+let defaultColor = ['white', '#444', 'rgb(255, 234, 0)', 'rgb(0, 247, 0)', 'rgb(14, 85, 0)', 'rgb(231, 73, 0)'];
 
 function sum(arr) {
     return eval(arr.join("+"));
 };
 
-text_sec.addEventListener('mouseout', function(e){
+textSection.addEventListener('mouseout', function(e){
     drawInfo(0);
 });
 
+function add_tag_css(colorList){
+    if (colorList === undefined){ colorList = defaultColor; } 
+    // else { defaultColor = colorList; }
+    let colorStyle = document.getElementById("colors");
+    colorStyle.innerHTML = "";
+    for (let color in colorList){
+        colorStyle.innerHTML += ".tag_"+color+" {color:"+colorList[color]+"}\n";
+    }
+}
+
 function drawText(content){
-    let text_list = content["text"];
-    let tag = content["tag"];
-    info_list = content["info"];
-    tag_count = [0, 0, 0, 0, 0, 0];
-    text_sec.innerHTML = "";
+    
+    let text_list;
+    let tag;
+    if (content !== undefined) {
+        text_list = content["text"];
+        tag = content["tag"]["labels"];
+        defaultLabel = content["tag"]["names"];
+        infoList = content["info"];
+        add_tag_css(content["tag"]["colors"]);
+    }
+
+    tagCount = [0, 0, 0, 0, 0, 0];
+    textSection.innerHTML = "";
     scrollTo(0,0);
 
     for (let word in text_list){
-        let sep_word = document.createElement('div');
-        sep_word.id = 'w_'+word;
-        sep_word.className = "sep_word";
-        if (tag[word] !== 0){
-            sep_word.className += ' tag_'+ tag[word]
-        }
-        tag_count[tag[word]] += 1;
-        sep_word.innerHTML = text_list[word];
-        sep_word.addEventListener('mouseover', function(e){
-            console.log(e.target.id);
+        let wordDiv = document.createElement('div');
+        wordDiv.id = 'w_'+word;
+        wordDiv.className = "sep_word";
+        wordDiv.className += ' tag_'+ tag[word]
+        tagCount[tag[word]] += 1;
+        wordDiv.innerHTML = text_list[word];
+        wordDiv.addEventListener('mouseover', function(e){
             drawInfo(Number(e.target.id.split('_')[1])+1);
         });
-        text_sec.appendChild(sep_word);
+        textSection.appendChild(wordDiv);
     }
 
     drawStat();
 }
 
 function drawInfo(index){
-    info_pannel.innerHTML = "";
+    infoPannel.innerHTML = "";
 
-    let source;
-    if (index === 0) { source = empty; } else { source = info_list[index-1] }
-    for (let group of source){
-        let section = document.createElement('div');
-        section.className = "section";
-        section.innerHTML = obj2html(group);
-        info_pannel.appendChild(section);
+    if (index === 0) { return }
+    
+    for (let group of infoList[index-1]){
+        let infoDiv = document.createElement('div');
+        infoDiv.className = "section";
+        infoDiv.innerHTML = obj2html(group);
+        infoPannel.appendChild(infoDiv);
     }
     
     function add_color(content, key){
@@ -76,25 +91,26 @@ function drawStat(){
     count.innerHTML = "";
 
     // tag_count[5] = sum(tag_count);
-    for (let label in tag_label){
-        let tag_sec = document.createElement('div');
-        tag_sec.className = "tag_sec";
+    for (let label in defaultLabel){
+        let statDiv = document.createElement('div');
+        statDiv.className = "tag_sec";
         
-        let count_div = document.createElement('div');
-        count_div.className = "tag_count";
-        count_div.innerHTML = tag_count[label];
-        tag_sec.appendChild(count_div);
+        let countDiv = document.createElement('div');
+        countDiv.className = "tag_count";
+        countDiv.innerHTML = tagCount[label];
+        statDiv.appendChild(countDiv);
 
-        let label_div = document.createElement('div');
-        label_div.className = "tag_label";
-        label_div.innerHTML = tag_label[label];
-        tag_sec.appendChild(label_div);
+        let labelDiv = document.createElement('div');
+        labelDiv.className = "tag_label";
+        labelDiv.innerHTML = defaultLabel[label];
+        statDiv.appendChild(labelDiv);
 
-        count.appendChild(tag_sec);
+        count.appendChild(statDiv);
     }
 }
 
 window.onload=function(){
-    drawText({});
+    add_tag_css();
+    drawText();
     drawInfo(0);
 }

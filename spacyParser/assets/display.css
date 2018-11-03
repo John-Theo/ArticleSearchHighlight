@@ -44,27 +44,6 @@
     color: #00d600;
 }
 
-/* IS_STOP, WEIRD, MAYBE_URL, IS_COMMON, IS_WEIRD */
-.tag_1 {
-    color: #444;
-}
-
-.tag_2 {
-    color: rgb(255, 234, 0);
-}
-
-.tag_3 {
-    color: rgb(0, 247, 0);
-}
-
-.tag_4 {
-    color: rgb(14, 85, 0);
-}
-
-.tag_5 {
-    color: rgb(231, 73, 0);
-}
-
 #left {
     padding: 10px 40px 0px 10px;
     line-height: 0px;
@@ -153,14 +132,6 @@
     text-transform: uppercase;
 }
 
-.line {
-    display: flex;
-    margin: 0 0 0 50px;
-    justify-content: space-around;
-    font-size: 12px;
-    line-height: 20px;
-}
-
 .true {
     color: #00d600;
 }
@@ -186,11 +157,21 @@
     height: 10px;
 }
 
-.value {
-    width: 170px;
+.line {
+    display: flex;
+    margin: 6px 0;
+    padding: 0 15px;
+    justify-content: space-around;
+    font-size: 12px;
 }
 
-.attr {
+.line > .value {
+    width: 60%;
+    word-wrap: break-word;
+    line-height: 14px;
+}
+
+.line > .attr {
     font-weight: bolder;
     /* margin-right: 30px; */
     width: 85px;
