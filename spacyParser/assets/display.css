@@ -21,14 +21,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 25%;
+    margin: 15px 0;
 }
 
 #count {
-    margin: 40px 0;
+    margin: 20px 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: stretch;
+    flex-wrap: wrap;
     line-height: 20px;
     width: 100%;
     text-align: center;
@@ -37,12 +40,19 @@
 .tag_count {
     position: relative;
     font-weight: 600;
-    color: white !important;
+    color: white;
     line-height: 50px;
     height: 50px;
     width: 50px;
     border-radius: 50px;
     background-color: rgba(255, 255, 255, 0.05);
+
+    box-sizing: border-box;
+    /* border: 1px solid transparent; */
+    transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
 }
 
 .color_indicator {
@@ -58,10 +68,11 @@
     margin-top: 5px;
     font-size: 12px;
     color: rgb(0, 247, 0) !important;
+    word-break: normal;
 }
 
 #left {
-    padding: 10px 40px 0px 10px;
+    padding: 0 40px 0px 10px;
     line-height: 0px;
     letter-spacing: 1px;
 }
@@ -75,11 +86,18 @@
 }
 
 .sep_word {
-    margin: 0px 6px;
+    margin: 2px -2px;
+    padding: 7px;
     background-color: transparent !important;
+    display: block;
+    position: relative;
+    font-size: 16px;
+    height: 16px;
+    line-height: 16px;
+    border-radius: 7px;
 }
 
-.sep_word::after {
+/* .sep_word::after {
     content: "";
     display: block;
     position: relative;
@@ -89,11 +107,11 @@
     width: calc(100% + 14px);
     height: 34px;
     transform: translateY(-18px) translateX(-8px);
-}
+} */
 
-.sep_word:hover::after {
+/* .sep_word:hover::after {
     opacity: 1;
-}
+} */
 
 #right_placeholder {
     min-width: 340px;
@@ -102,21 +120,22 @@
 }
 
 #right {
+    z-index: 10;
     height: 100%;
     width: 350px;
-    z-index: 9999;
     position: fixed;
     right: 40px;
-    top: 50px;
+    margin: 50px 0;
 }
 
 #info {
     padding: 40px 0;
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
-    height: 440px;
+    /* height: 300px; */
     border-radius: 7px;
     background-color: rgba(255, 255, 255, 0.05);
     color: rgba(255, 255, 255, 0.8);
@@ -136,7 +155,7 @@
     background-color: rgba(255, 255, 255, 0.05);
     width: 350px;
     font-weight: 700;
-    text-align:center;
+    text-align: center;
     word-spacing: 7px;
     letter-spacing: 2px;
     text-overflow: ellipsis;
@@ -181,13 +200,13 @@
     font-size: 12px;
 }
 
-.line > .value {
+.line>.value {
     width: 60%;
     word-wrap: break-word;
     line-height: 14px;
 }
 
-.line > .attr {
+.line>.attr {
     font-weight: bolder;
     width: 85px;
     text-align: right;
