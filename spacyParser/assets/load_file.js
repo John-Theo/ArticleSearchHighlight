@@ -7,7 +7,7 @@ function read(){
         reader.onload = function (evt) {
             var fileString = evt.target.result;
             loading.style.opacity = 1;
-            post('../spacy_parser/', {'content': fileString});
+            post('../spacy_parser/', {'content': fileString, 'file_name': uploadFile.name});
         }
     }
 }
@@ -20,6 +20,18 @@ function post(URL, PARAMS) {
     ajax("POST", URL, formData);
 }
 
+function download(filename, text) {
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+}
 
 function fail(code) {
 }

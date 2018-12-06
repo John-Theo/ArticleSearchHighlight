@@ -27,9 +27,13 @@
       </div>
   </div>
   <div id="right">
-    <div>
-      <input type="file" id="fileUpload" data-multiple-caption="{count} files selected" multiple style="display: none;" onchange="read()" />
-      <label for="fileUpload">Choose a file</label>
+    <div id="btnGroup">
+        <div>
+          <input type="file" id="fileUpload" style="display: none;" onchange="read()" />
+          <label for="fileUpload" class="button">import</label>
+        </div>
+        <div class="button" onclick="exportContent()">export</div>
+        <img id="settings" src='{% static "./settings.svg" %}' alt="" />
     </div>
     <div id="count"></div>
     <div id="info"></div>
@@ -45,8 +49,8 @@
   </div>
 </body>
 
+<script src='{% static "./rgbcolor.js" %}'></script>
 <script src='{% static "./load_file.js" %}'></script>
 <script src='{% static "./display.js" %}'></script>
-<script src='{% static "./rgbcolor.js" %}'></script>
 
 </html>

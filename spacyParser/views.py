@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.http import JsonResponse
 from .write_json import parse
+import json
 
 
 def index(request):
@@ -36,9 +37,12 @@ def app(request):
         return HttpResponse(template.render(None, request))
     elif request.method == 'POST':
         content = request.POST["content"]
-        if content[0] != '{':
-            return JsonResponse(parse(content))
-        else:
-            import json
-            return JsonResponse(json.loads(content))
-    
+        file_name = request.POST["file_name"]
+        parsed = None
+        try:
+            parsed = json.loads(content)
+        except json.decoder.JSONDecodeError:
+            parsed = parse(content)
+        finally:
+            parsed.update({'fileName': file_name})
+            return JsonResponse(parsed)

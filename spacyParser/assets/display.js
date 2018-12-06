@@ -1,164 +1,220 @@
-const textSection = document.getElementById("text");
-const rightSection = document.getElementById("right");
-const count = document.getElementById("count");
-const infoPannel = document.getElementById("info");
-let loading = document.getElementById("loading");
+function $(id){ return document.getElementById(id); }
+const textSection = $("text");
+const rightSection = $("right");
+const count = $("count");
+const infoPannel = $("info");
+const loading = $("loading");
+const btnGroup = $("btnGroup");
+
 let handleSingleText = false;
 let currentTextIndex = null;
+
 const noInfoPlaceholder = "";
-let infoList = [];
-let labelList = [];
+const defultLabelNumber = 8;
+let respond;
+let sameWords={};
+// TODO, change here!!!!!!!
+let editableLabels = [0, 2, 3, 4, 5];
+let toggleInfoPanel = false;
+
 let tagCount = new Array(30);
 tagCount.fill(0);
-let defaultLabel = ['tag_0', 'tag_1', 'tag_2', 'tag_3', 'tag_4', 'tag_5', 'tag_6'];
-let defaultColor = ['#444', 'white', 'rgb(0, 247, 0)', 'rgb(255, 234, 0)', '#444', 'white', 'rgb(0, 247, 0)'];
+let defaultLabel=[];
+for (let i=0; i<defultLabelNumber; i++) { defaultLabel.push('tag_'+(i+1)) }
+const [startColor, stopColor] = [new RGBColor('#008FB2'), new RGBColor('#A0B61E')];
+const defaultColor = startColor.transitionTo(stopColor, defultLabelNumber);
+// defaultColor = ['#444', 'white', 'rgb(0, 247, 0)', 'rgb(255, 234, 0)'];
 
-defaultLabel = defaultLabel.concat(defaultLabel, defaultLabel);
-defaultColor = defaultColor.concat(defaultColor, defaultColor);
+!function registerListeners(){
+    let getEvent = event => event || window.event || arguments.callee.caller.arguments[0];
+    
+    // Click outside textDiv or press ESC to clear focus
+    textSection.onclick = function(event){ getEvent(event).stopPropagation(); }
+    btnGroup.onclick = function(event){ getEvent(event).stopPropagation(); }
+    document.onclick = function(event){ Component.reset(); }
+    document.onkeydown = function (event) {
+        if (getEvent(event).keyCode == 27) { Component.reset(); }
+    };
+    
+    // Clear bg of textDiv when mouseout
+    textSection.onmouseout = function (event) {
+        if (!handleSingleText) {
+            Component.reset();
+        } else if (!currentTextIndex) {
+            currentTextIndex = getEvent(event).target.getAttribute('index');
+        }
+    };
+}();
 
-document.onkeydown = function (event) {
-    var e = event || window.event || arguments.callee.caller.arguments[0];
-    if (e && e.keyCode == 27) {
-        resetComponents();
-    }
-};
 
-function resetComponents() {
-    drawInfo();
-    textObj = document.getElementById('w_' + currentTextIndex);
-    if (textObj) {
+let Component = {
+    _reset: function(textObj){
         changeStat(textObj.getAttribute('label'), 'clear');
         textObj.removeAttribute("style");
+    },
+    reset: function(){
+        changeInfo();
+        textObj = document.getElementById('w_' + currentTextIndex);
+        if (textObj) {
+            for (let div of sameWords[textObj.innerHTML]) {this._reset(div)}
+        }
+        handleSingleText = false;
+        currentTextIndex = null;
+    },
+    _focus: function(textObj){
+        changeStat(textObj.getAttribute('label'), 'add');
+        textObj.style.setProperty('background-color', 'rgba(255, 255, 255, 0.1)', 'important');
+        currentTextIndex = textObj.getAttribute('index');
+    },
+    focus: function(textObj){
+        changeInfo(textObj.getAttribute('index'));
+        for (let div of sameWords[textObj.innerHTML]) {this._focus(div)}
+    },
+    freeze: function(){
+        handleSingleText = true;
     }
-    handleSingleText = false;
-    currentTextIndex = null;
 }
 
-function focusComponent(textObj) {
-    drawInfo(textObj.getAttribute('index'));
-    changeStat(textObj.getAttribute('label'), 'add');
-    textObj.style.setProperty('background-color', 'rgba(255, 255, 255, 0.1)', 'important');
-    currentTextIndex = textObj.getAttribute('index');
-}
-
-function freezeComponent(){
-    handleSingleText = true;
-}
-
-textSection.addEventListener('mouseout', function (e) {
-    if (!handleSingleText) {
-        resetComponents(e.target);
-    } else {
-        if (!currentTextIndex) currentTextIndex = e.target.getAttribute('index');
-        // console.log(currentTextIndex)
-    }
-});
-
-function add_tag_css(colorList) {
-    if (colorList === undefined) {
-        colorList = defaultColor;
-    }
-    let colorStyle = document.getElementById("colors");
-    colorStyle.innerHTML = "";
-    for (let color in colorList) {
-        colorStyle.innerHTML += ".tag_" + color + " {color:" + colorList[color] + "; background-color:" + colorList[color] + "}\n";
-    }
+function exportContent(){
+    let name = respond.fileName;
+    download(name.slice(0, name.lastIndexOf('.'))+'.json', JSON.stringify(respond));
 }
 
 function drawElements(content) {
+
+    function addLabelCss() {
+        let colorList = respond ? respond.labelConfig.colors : defaultColor;
+        let colorStyle = document.getElementById("colors");
+        colorStyle.innerHTML = "";
+        for (let color in colorList) {
+            colorStyle.innerHTML += ".tag_" + color + " {color:" + colorList[color] + "; background-color:" + colorList[color] + "}\n";
+        }
+    }
+
     scrollTo(0, 0);
 
+    respond = content;
     if (content !== undefined) {
-        defaultColor = content["tag"]["colors"];
-        drawText(content["text"], content["tag"]["labels"]);
-        labelList = content["tag"]["names"];
-        infoList = content["info"];
+        drawText();
     }
-    drawInfo();
+    if (toggleInfoPanel) {drawInfo();} else {infoPannel.style.display = "none";}
+    
     drawStat();
-    add_tag_css();
+    addLabelCss();
 
     loading.style.opacity = 0;
 }
 
-function drawText(text_list, tag_list) {
+function drawText() {
 
+    let wordList = respond.words.parsed;
     tagCount = new Array(30);
     tagCount.fill(0);
     textSection.innerHTML = "";
 
-    for (let word in text_list) {
+    for (let wordIndex in wordList) {
+        let text = wordList[wordIndex].text;
+        let label = wordList[wordIndex].label;
+        // let editable =  word.editable;
         let wordDiv = document.createElement('div');
-        wordDiv.id = 'w_' + word;
+        wordDiv.id = 'w_' + wordIndex;
         wordDiv.className = "sep_word";
-        wordDiv.className += ' tag_' + tag_list[word];
-        wordDiv.setAttribute("index", word);
-        wordDiv.setAttribute("label", tag_list[word]);
+        wordDiv.className += ' tag_' + label;
+        wordDiv.setAttribute("index", wordIndex);
+        wordDiv.setAttribute("label", label);
 
-        tagCount[tag_list[word]] += 1;
-        wordDiv.innerHTML = text_list[word];
-        wordDiv.addEventListener('mouseover', function (e) {
-            if (!handleSingleText) {
-                focusComponent(wordDiv);
-                // drawInfo(e.target.getAttribute('index'));
-                // changeStat(e.target.getAttribute('label'), 'add');
-                // wordDiv.style.setProperty('background-color', 'rgba(255, 255, 255, 0.1)', 'important');
-            }
-        });
-        wordDiv.addEventListener('click', function (e) {
-            resetComponents();
-            focusComponent(wordDiv);
-            freezeComponent();
-        });
+        tagCount[label] += 1;
+        wordDiv.innerHTML = text;
+
+        if (editableLabels.indexOf(label) !== -1) {
+            wordDiv.onmouseover = function (e) {
+                if (!handleSingleText) {
+                    Component.focus(wordDiv);
+                }
+            };
+            wordDiv.onclick = function (e) {
+                Component.reset();
+                Component.focus(wordDiv);
+                Component.freeze();
+            };
+        }
+        
         textSection.appendChild(wordDiv);
+
+        if (!sameWords[text]) sameWords[text] = [];
+        sameWords[text].push(wordDiv);
+    }
+
+    const add = (a,b) => a+b
+    let tagCountDict = {};
+    for (let i in respond.labelConfig.names)  tagCountDict[respond.labelConfig.names[i]] = tagCount[i];
+    respond.statistic = {
+        'totalWordCount': tagCount.reduce(add),
+        'tagCount': tagCountDict
     }
 
 }
 
-function drawInfo(index) {
-    infoPannel.innerHTML = "";
+function changeInfo(index) {
+    if (!toggleInfoPanel) {return;}
+    if (!index) {
+        let infoKeys = respond.featureConfig.names;
+        for (let valueIndex in infoKeys) {
+            let infoDiv = document.getElementsByClassName("line")[valueIndex];
+            let valueDiv = infoDiv.getElementsByClassName("value")[0];
+            valueDiv.className = "value";
+            valueDiv.innerHTML = "";
+        }
+    } else {
+        let infoValues = respond.words.parsed[index].features;
+        for (let valueIndex in infoValues) {
+            let value = infoValues[valueIndex];
+            let infoDiv = document.getElementsByClassName("line")[valueIndex];
+            let valueDiv = infoDiv.getElementsByClassName("value")[0];
+            valueDiv.className = `value ${add_color(value)}`;
+            valueDiv.innerHTML = value;
+        }
 
-    if (index === undefined) {
+        function add_color(content) {
+            if (content === true) {
+                return 'true'
+            } else if (content === false) {
+                return 'false'
+            }
+            return ''
+        }
+    }
+}
+
+function drawInfo() {
+
+    if (respond) {
+        let infoKeys = respond.featureConfig.names;
+        let infoIsLong = respond.featureConfig.isLong;
+        if (!infoIsLong) infoIsLong = new Array(infoKeys.length), infoIsLong.fill(false);
+
+        for (let keyIndex in infoKeys) {
+            let infoDiv = document.createElement('div');
+            infoDiv.className = "line ";
+            infoDiv.className += infoIsLong[keyIndex] ? "tag_long" : "";
+            infoDiv.innerHTML = 
+            '<div class="attr">' + infoKeys[keyIndex] + "</div>" +
+            `<div class="value"></div>`;
+            infoPannel.appendChild(infoDiv);
+        }
+    } else {
         infoPannel.innerHTML = noInfoPlaceholder;
-        return;
     }
 
-    for (let group of infoList[index]) {
-        let infoDiv = document.createElement('div');
-        infoDiv.className = "section";
-        infoDiv.innerHTML = obj2html(group);
-        infoPannel.appendChild(infoDiv);
-    }
-
-    function add_color(content, key) {
-        if (key === 'tag_') {
-            return ' tag'
-        } else if (content === true) {
-            return ' true'
-        } else if (content === false) {
-            return ' false'
-        }
-        return ''
-    }
-
-    function obj2html(dict) {
-        let content = "";
-        for (let key in dict) {
-            content += '<div class="line">' +
-                '<div class="attr">' + key + "</div>" +
-                `<div class="value${add_color(dict[key], key)}">` + dict[key] + "</div>" +
-                "</div>"
-        }
-        return "<div>" + content + "</div>"
-    }
 }
 
 function changeStat(highlightIndex, mode) {
     let hl_div = document.getElementsByClassName("tag_count")[highlightIndex];
+    let colorList = respond ? respond.labelConfig.colors: defaultColor;
     if (mode == "add") {
-        let color = new RGBColor(defaultColor[highlightIndex]);
+        let color = new RGBColor(colorList[highlightIndex]);
         let gray = (color.r * 19595 + color.g * 38469 + color.b * 7472) >> 16;
-        hl_div.style.backgroundColor = defaultColor[highlightIndex];
+        hl_div.style.backgroundColor = colorList[highlightIndex];
         // console.log(color.r, color.g, color.b);
         // console.log(gray);
         if (gray > 90) {
@@ -174,9 +230,7 @@ function changeStat(highlightIndex, mode) {
 
 function drawStat() {
     count.innerHTML = "";
-    if (labelList.length == 0) {
-        labelList = defaultLabel;
-    }
+    let labelList = respond ? respond.labelConfig.names: defaultLabel;
 
     for (let label in labelList) {
         let statDiv = document.createElement('div');

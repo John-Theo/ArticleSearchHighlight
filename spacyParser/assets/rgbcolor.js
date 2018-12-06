@@ -240,6 +240,21 @@ function RGBColor(color_string)
         if (b.length == 1) b = '0' + b;
         return '#' + r + g + b;
     }
+    this.transitionTo = function (colorB, step) {
+        let colorA = this;
+        let gradient = [];
+        stepR = (colorB.r-colorA.r)/step;
+        stepG = (colorB.g-colorA.g)/step;
+        stepB = (colorB.b-colorA.b)/step;
+        for (let i=0; i<step; i++) {
+            gradient.push(`rgb(
+                ${Math.floor(this.r+stepR*i)},
+                ${Math.floor(this.g+stepG*i)},
+                ${Math.floor(this.b+stepB*i)})
+                `.replace(/\s/g, ''));
+        }
+        return gradient;
+    }
 
     // help
     this.getHelpXML = function () {
