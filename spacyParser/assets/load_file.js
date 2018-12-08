@@ -5,28 +5,30 @@ function readNext(){
     if (currentFileIndex != 0) {
         exportContent();
     }
+    
 
     function updateProgress(uploadFile) {
-        fileName.innerHTML = uploadFile.name;
+        if (uploadFile) fileName.innerHTML = uploadFile.name;
         barFront.style.width = `${Math.ceil(currentFileIndex/files.length*100)}%`;
         remains.innerHTML = `${currentFileIndex} / ${files.length-currentFileIndex}`;
     }
 
     if (files){
         if (currentFileIndex >= files.length) {
-            alert("All files finished!");
-        } else {
-            let uploadFile = files[currentFileIndex];
-            updateProgress(uploadFile);
-            let reader = new FileReader();
-            reader.readAsText(uploadFile, "UTF-8");
-            reader.onload = function (evt) {
-                var fileString = evt.target.result;
-                loading.style.opacity = 1;
-                post('../spacy_parser/', {'content': fileString, 'file_name': uploadFile.name});
-            };
-            currentFileIndex += 1;
+            updateProgress();
+            setTimeout('alert("All files finished!");', 100);
+            return;
         }
+        let uploadFile = files[currentFileIndex];
+        updateProgress(uploadFile);
+        let reader = new FileReader();
+        reader.readAsText(uploadFile, "UTF-8");
+        reader.onload = function (evt) {
+            var fileString = evt.target.result;
+            loading.style.opacity = 1;
+            post('../spacy_parser/', {'content': fileString, 'file_name': uploadFile.name});
+        };
+        currentFileIndex += 1;
     } else {
         alert("Select some files first!");
     }
