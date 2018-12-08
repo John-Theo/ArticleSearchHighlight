@@ -28,12 +28,22 @@
   </div>
   <div id="right">
     <div id="btnGroup">
-        <div>
-          <input type="file" id="fileUpload" style="display: none;" onchange="read()" />
-          <label for="fileUpload" class="button">import</label>
+        <!-- <div>
+          <input type="file" id="fileUpload" style="display: none;" onchange="read()" webkitdirectory/>
+          <label for="fileUpload" class="button">open</label>
+        </div> -->
+        <div class="button" onclick="readNext()">next</div>
+        <div id="indicator" onclick="selectFolder()">
+          <div id="fileName">Select files</div>
+          <div id="progress">
+              <div id="bar_front"></div>
+              <div id="bar_back"></div>
+              <div id="remains">0 / 0</div>
+          </div>
         </div>
-        <div class="button" onclick="exportContent()">export</div>
-        <img id="settings" src='{% static "./settings.svg" %}' alt="" />
+        <img class="icon" src='{% static "./settings.svg" %}' alt="" />
+        <!-- <img class="icon" onclick="selectFolder()" src='{% static "./folder-open.svg" %}' alt="" /> -->
+        <input type="file" id="fileUpload" multiple style="display: none;" onchange="read()"/>
     </div>
     <div id="count"></div>
     <div id="info"></div>

@@ -5,6 +5,10 @@ const count = $("count");
 const infoPannel = $("info");
 const loading = $("loading");
 const btnGroup = $("btnGroup");
+const fileName = $("fileName");
+const progress = $("progress");
+const barFront = $("bar_front");
+const remains = $("remains");
 
 let handleSingleText = false;
 let currentTextIndex = null;
@@ -68,16 +72,17 @@ let Component = {
     },
     focus: function(textObj){
         changeInfo(textObj.getAttribute('index'));
-        for (let div of sameWords[textObj.innerHTML]) {this._focus(div)}
+        try {
+            for (let div of sameWords[textObj.innerHTML]) {this._focus(div)}
+        } catch (error) {
+            console.log(textObj.innerHTML)
+            console.log(sameWords[textObj.innerHTML])
+        }
+        
     },
     freeze: function(){
         handleSingleText = true;
     }
-}
-
-function exportContent(){
-    let name = respond.fileName;
-    download(name.slice(0, name.lastIndexOf('.'))+'.json', JSON.stringify(respond));
 }
 
 function drawElements(content) {
@@ -218,13 +223,14 @@ function changeStat(highlightIndex, mode) {
         // console.log(color.r, color.g, color.b);
         // console.log(gray);
         if (gray > 90) {
-            hl_div.style.color = "rgb(30, 30, 30)";
+            hl_div.firstElementChild.style.color = "rgb(30, 30, 30)";
         }
         // else {
         //     hl_div.style.border="1px solid white";
         // }
     } else if (hl_div) {
         hl_div.removeAttribute("style");
+        hl_div.firstElementChild.removeAttribute("style");
     }
 }
 
@@ -238,7 +244,34 @@ function drawStat() {
 
         let countDiv = document.createElement('div');
         countDiv.className = "tag_count";
-        countDiv.innerHTML = tagCount[label];
+        countDiv.innerHTML = `<div>${tagCount[label]}</div>`;
+        countDiv.setAttribute("index", label);
+        countDiv.onclick = function(event) {
+            if (handleSingleText) {
+                let newLabelDiv = event.target;
+                let newLabel = newLabelDiv.parentElement.getAttribute("index");
+                let oldLabel = document.getElementById("w_"+currentTextIndex).getAttribute("label");
+                let oldLabelDiv = document.getElementsByClassName("tag_count")[oldLabel].firstElementChild;
+                let currSameWords = sameWords[respond.words.parsed[currentTextIndex].text];
+
+                oldLabelDiv.innerText = parseInt(oldLabelDiv.innerText) - currSameWords.length;
+                newLabelDiv.innerText = parseInt(newLabelDiv.innerText) + currSameWords.length;
+                tagCount[oldLabel] -= currSameWords.length;
+                tagCount[newLabel] += currSameWords.length;
+
+                changeStat(oldLabel, 'clear');
+                setTimeout(`changeStat(${newLabel}, 'add')`, 1);
+                setTimeout(`changeStat(${newLabel}, 'clear')`, 200);
+                for (let textDiv of currSameWords) {
+                    let textIndex = textDiv.getAttribute("index"); 
+                    respond.words.parsed[textIndex].label = newLabel;
+                    textDiv.className = "sep_word tag_"+newLabel;
+                    textDiv.setAttribute("label", newLabel);
+                }
+            } else {
+                alert("Please click to select a text element first!");
+            }
+        };
         statDiv.appendChild(countDiv);
 
         let colorDiv = document.createElement('div');
@@ -247,8 +280,8 @@ function drawStat() {
 
         let labelDiv = document.createElement('div');
         labelDiv.className = "tag_label";
-        labelDiv.setAttribute("contenteditable", "true");
-        labelDiv.setAttribute("spellcheck", "false");
+        // labelDiv.setAttribute("contenteditable", "true");
+        // labelDiv.setAttribute("spellcheck", "false");
         labelDiv.innerHTML = labelList[label];
         statDiv.appendChild(labelDiv);
 

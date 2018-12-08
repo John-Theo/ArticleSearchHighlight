@@ -92,6 +92,8 @@ def parse(content):
     tags = []
     attr_whole = []
     for word in doc:
+        if not str(word).strip():
+            continue
         tag = int(argmax(is_noise(word)))
         tags.append(tag)
         attrs = {}

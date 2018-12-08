@@ -38,6 +38,7 @@
 }
 
 .tag_count {
+    cursor: pointer;
     position: relative;
     font-weight: 600;
     color: white;
@@ -53,6 +54,42 @@
     -moz-transition: all 0.3s;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
+}
+
+#indicator{
+    cursor: pointer;
+    width: 120px;
+    text-align: left;
+    margin-top: -20px;
+}
+
+#progress {
+    position: relative;
+    margin: 7px 0;
+    width: 100%;
+}
+
+#remains{
+    position: absolute;
+    font-size: 12px;
+    color: rgb(0, 247, 0);
+    margin-top: 8px;
+}
+
+#bar_front{
+    position: absolute;
+    z-index: 2;
+    height: 4px;
+    /* width: 50%; */
+    background-color: rgb(0, 247, 0);
+}
+
+#bar_back{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .color_indicator {
@@ -159,15 +196,12 @@
     text-transform: uppercase;
 }
 
-#settings {
+.icon {
     cursor: pointer;
     width: 20px;
-    transition: transform cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.3s;
-    -moz-transition: transform cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.3s;
-    -webkit-transition: transform cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.3s;
 }
 
-#settings:hover {
+.icon:hover {
     transform: rotate(7deg);
     -moz-transform: rotate(7deg); 	/* Firefox */
     -webkit-transform: rotate(7deg); /* Safari 和 Chrome */

@@ -1,13 +1,31 @@
-function read(){
-    file = document.getElementById('fileUpload');
-    if (file.files.length != 0){
-        let uploadFile = file.files[0]
-        let reader = new FileReader();
-        reader.readAsText(uploadFile, "UTF-8");
-        reader.onload = function (evt) {
-            var fileString = evt.target.result;
-            loading.style.opacity = 1;
-            post('../spacy_parser/', {'content': fileString, 'file_name': uploadFile.name});
+let files;
+let currentFileIndex=0;
+
+function readNext(){
+    if (currentFileIndex != 0) {
+        exportContent();
+    }
+
+    function updateProgress(uploadFile) {
+        fileName.innerHTML = uploadFile.name;
+        barFront.style.width = `${Math.ceil(currentFileIndex/files.length*100)}%`;
+        remains.innerHTML = `${currentFileIndex} / ${files.length-currentFileIndex}`;
+    }
+
+    if (files){
+        if (currentFileIndex >= files.length) {
+            alert("All files finished!");
+        } else {
+            let uploadFile = files[currentFileIndex];
+            updateProgress(uploadFile);
+            let reader = new FileReader();
+            reader.readAsText(uploadFile, "UTF-8");
+            reader.onload = function (evt) {
+                var fileString = evt.target.result;
+                loading.style.opacity = 1;
+                post('../spacy_parser/', {'content': fileString, 'file_name': uploadFile.name});
+            };
+            currentFileIndex += 1;
         }
     }
 }
@@ -31,6 +49,11 @@ function download(filename, text) {
     element.click();
   
     document.body.removeChild(element);
+}
+
+function exportContent(){
+    let name = respond.fileName;
+    download(name.slice(0, name.lastIndexOf('.'))+'.json', JSON.stringify(respond));
 }
 
 function fail(code) {
@@ -60,4 +83,17 @@ function ajax(method, url, data){
         request.send(data);
     }
     
+}
+
+
+function selectFolder(){
+    let file = document.getElementById('fileUpload');
+    file.click();
+    file.onchange = () => {
+        if (file.files.length != 0){
+            files = file.files;
+            currentFileIndex = 0;
+            readNext();
+        }
+    }
 }
