@@ -27,6 +27,8 @@ function readNext(){
             };
             currentFileIndex += 1;
         }
+    } else {
+        alert("Select some files first!");
     }
 }
 
